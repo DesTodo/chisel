@@ -15,6 +15,11 @@ class Chisel
   end
 
   def markdown_to_html
+    html_chunks =
+    markdown_chunks.map do |chunk|
+      chunk_to_html(chunk)
+    end
+
     make_lines
     make_chunks
     chunk_to_html
@@ -31,14 +36,35 @@ class Chisel
   end
 
   def chunk_to_html(markdown_chunks)
-    # remove empty lines
+    if header?
+      chunk_to_html_header
+    else
+      chunk_to_html_paragraph
+    end
     # translate  header"#" --> ""<h1>" ## == "<h2>" "###" == "<h3>"
   end
 
-  # html_output = my_output.html
-chunk = Parser.new("./my_input.markdown")
-end
+  def header?
+    chunk[0] == "#"
+  end
 
-binding.pry
-p chunks
-p chunk
+  def chunk_to_html_header(markdown_chunk)
+    if markdown_chunk[0] == "#"
+      markdown_chunk[0] = "<h1>"
+    elsif markdown_chunk[0] == "##"
+      markdown_chunk[0] = "<h2>"
+    elsif markdown_chunk[0] == "###"
+      markdown_chunk[0] = "<h3>"
+    else
+      chunk_to_html_paragraph
+    end
+    html_header = markdown_chunk
+  end
+
+  def chunk_to_html_paragraph(markdown_chunk)
+
+  end
+
+
+  # html_output = my_output.html
+end
