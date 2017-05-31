@@ -1,5 +1,6 @@
 # chisel planning:
 
+# try to recreate video example 
 
 #markdown input file :
 <!-- # My Life in Desserts

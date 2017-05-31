@@ -4,7 +4,7 @@ require 'minitest/pride'
 require './lib/chisel.rb'
 
 
-class ParserTest < Minitest::Test
+class ChiselTest < Minitest::Test
 
 
 

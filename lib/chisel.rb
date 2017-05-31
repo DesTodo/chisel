@@ -11,7 +11,7 @@ class Chisel
   #attr_reader :text
 
   def initialize(markdown)
-    @text = FileRead.new(read)
+    @markdown = markdown
   end
 
   def markdown_to_html
